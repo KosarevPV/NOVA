@@ -1,0 +1,12 @@
+version: '2.3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ci/Dockerfile.ci
+    env_file:
+      - service.env
+    ports:
+      - "8004:8000"
+    command: bash -c "cd /srv && uvicorn --host 0.0.0.0 --port 8000 nova.asgi:application"
